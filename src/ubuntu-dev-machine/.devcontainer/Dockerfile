@@ -1,4 +1,4 @@
-from mcr.microsoft.com/devcontainers/base:ubuntu-20.04
+FROM mcr.microsoft.com/devcontainers/base:ubuntu-20.04
 
 ARG OLD_USERNAME=vscode
 ARG USERNAME=mike
