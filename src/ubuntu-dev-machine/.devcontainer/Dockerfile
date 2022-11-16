@@ -1,12 +1,9 @@
-FROM mcr.microsoft.com/devcontainers/base:ubuntu-20.04
+# [Choice] Ubuntu version (use jammy or bionic on local arm64/Apple Silicon): jammy, focal, bionic
+ARG VARIANT="jammy"
+FROM buildpack-deps:${VARIANT}-curl
 
-ARG OLD_USERNAME=vscode
-ARG USERNAME=mike
+LABEL dev.containers.features="common"
 
-# rename base image default
-RUN usermod -l $USERNAME --move-home --home /home/$USERNAME $OLD_USERNAME \
-    && groupmod --new-name $USERNAME $OLD_USERNAME \
-    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME
-
-USER $USERNAME
+# [Optional] Uncomment this section to install additional OS packages.
+# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+#     && apt-get -y install --no-install-recommends <your-package-list-here>
