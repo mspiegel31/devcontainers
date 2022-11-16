@@ -1,8 +1,10 @@
 from mcr.microsoft.com/devcontainers/base:ubuntu-20.04
 
 ARG USERNAME=mike
-ARG USER_UID=1001
+ARG USER_UID=1000
 ARG USER_GID=$USER_UID
+
+RUN userdel -r vscode
 
 # Create the user
 RUN groupadd --gid $USER_GID $USERNAME \
