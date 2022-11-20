@@ -1,11 +1,14 @@
 # [Choice] Ubuntu version (use jammy or bionic on local arm64/Apple Silicon): jammy, focal, bionic
-ARG VARIANT="jammy"
-FROM buildpack-deps:${VARIANT}-curl
+FROM ubuntu:22.04
+
+SHELL ["/bin/bash", "-c"]
 
 LABEL dev.containers.features="common"
 
 RUN apt-get update && \
     DEBIAN_FRONTEND="noninteractive" apt-get install --yes \  
+    bash \
+    build-essential \
     ca-certificates \
     curl \
     gnupg \
@@ -21,9 +24,9 @@ RUN echo \
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
         zsh \
+        containerd.io=1.5.11-1 \ 
         docker-ce \ 
         docker-ce-cli \
-        containerd.io=1.5.11-1 \ 
         docker-compose-plugin \
         htop \
         locales \
@@ -34,7 +37,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         sudo \
         systemd \
         systemd-sysv \
-        unzip
+        unzip \
+        wget
 
 # Enables Docker starting with systemd
 RUN systemctl enable docker
