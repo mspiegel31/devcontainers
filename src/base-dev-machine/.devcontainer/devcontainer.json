@@ -3,7 +3,12 @@
         "dockerfile": "../Dockerfile",
         "context": ".."
     },
-    "features": {},
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:1": {
+            "installZsh": "true",
+            "upgradePackages": "true"
+        }
+    },
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     // "forwardPorts": [],
 

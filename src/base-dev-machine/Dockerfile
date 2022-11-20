@@ -35,6 +35,7 @@ RUN apt-get update && \
       systemd-sysv \
       unzip \
       vim \
+      bpytop \
       wget && \
     # Install latest Git using their official PPA
     add-apt-repository ppa:git-core/ppa && \
@@ -50,7 +51,7 @@ RUN chmod +x /usr/local/bin/docker-compose
 # Add a user `coder` so that you're not developing as the `root` user
 RUN useradd mike \
       --create-home \
-      --shell=/bin/bash \
+      --shell=/usr/bin/zsh \
       --groups=docker \
       --uid=1000 \
       --user-group && \
